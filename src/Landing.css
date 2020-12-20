@@ -1,0 +1,95 @@
+
+.landing{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.landing__underlay{
+    background-image: url('https://images.unsplash.com/photo-1501924497965-792fefaea3dc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80');
+    z-index: 1;
+    background-size: cover;
+    width: 80%;
+    height: 700px;
+}
+
+.landing__wrapper{
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display:flex;
+    justify-content: space-around;
+    align-items:center;
+}
+
+.landing__quote{
+    width: 400px;
+    height: 100%;
+    color:white;
+    font-size: 24px;
+    font-weight:bold;
+    display:flex;
+    align-items:center;
+    line-height: 1.8;
+}
+
+.landing__accountSecion{
+    width: 300px;
+    height: 80%;
+    padding: 10px;
+    background-color: #eef0ff;
+    font-size: 24px;
+    font-weight:bold;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    transition: 0.5s all ease;
+}
+
+.landing__accountSecion .checkbox{
+    display:flex;
+    font-weight: 400;
+    font-size: 12px;
+    align-items:center;
+    justify-content: center;
+}
+
+.landing__accountSecion .checkbox p{
+    margin-left: 10px;
+}
+
+.landing__accountSecion:hover{
+    width: 400px;
+}
+
+.header__subsection{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__leftSpacer{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+
+}
+
+.header__topFive{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    flex:1;
+}
+
+.header__rightSpacer{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+}

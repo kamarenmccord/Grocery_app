@@ -6,7 +6,6 @@ const Login = () => {
     return (
         <div className='login'>
             Login
-            <Link to='/'>Home</Link>
         </div>
     )
 }
