@@ -1,0 +1,64 @@
+
+.basket{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+.basket__banner{
+    width: 100%;
+    height: 60px;
+    background-color:white;
+    border-bottom: 1px solid black;
+}
+
+.basket__accountReminder{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+    width: 90%;
+    margin-top: 20px;
+    height: 40px;
+    background-color:white;
+}
+
+.basket__controls{
+    display:flex;
+    align-items:center;
+    width: 90%;
+    margin-top: 20px;
+    height: 60px;
+    background-color:white;
+}
+
+.basket__content{
+    width: 90%;
+    margin-top: 20px;
+    background-color:white;
+    min-height: 100vh;
+    display: flex;
+}
+
+.basket__list{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    width: 80%;
+}
+
+.basket__meals{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    flex:1;
+    border-left: 10px solid #cccccc;
+}
+
+.basket__list h2{
+    margin-top: 20px;
+}
+
+.basket__meals h2{
+    margin-top: 20px;
+}

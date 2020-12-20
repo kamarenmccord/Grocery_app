@@ -1,0 +1,48 @@
+
+.main{
+    background-color:steelblue;
+    min-height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.main a{
+    color:black;
+    text-decoration: none;
+}
+
+.main__wrapper{
+    height: 600px;
+    width: 70%;
+    margin-bottom: 200px;
+    display:flex;
+    align-items:center;
+    justify-content: space-evenly;
+}
+
+.main .card{
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content: center;
+    width: 500px;
+    height: 400px;
+    border-radius: 10px;
+    border-top: 4px solid blue;
+    border-bottom: 4px solid blue;
+    background-color: white;
+    transition: 0.3s all ease;
+}
+
+.main .card:hover{
+    background-color: #eef0ff;
+    border-bottom: 4px solid green;
+    border-top: 4px solid green;
+}
+
+.main .card p{
+    font-size: 24px;
+    font-weight:bold;
+}

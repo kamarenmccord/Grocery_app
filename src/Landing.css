@@ -23,10 +23,22 @@
     align-items:center;
 }
 
+.landing__titleWrapper{
+    height: 70%;
+    display:flex;
+    flex-direction:column;
+    justify-content: space-evenly;
+}
+
+.landing__titleWrapper h1{
+    color:white;
+    text-decoration: underline;
+}
+
 .landing__quote{
     width: 400px;
     height: 100%;
-    color:white;
+    color:#eee;
     font-size: 24px;
     font-weight:bold;
     display:flex;
@@ -65,29 +77,30 @@
     width: 400px;
 }
 
-.header__subsection{
-    margin-top: 20px;
+.landing__subsection{
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-.header__leftSpacer{
+.landing__leftSpacer{
     display:flex;
     flex-direction: column;
     align-items: center;
     width: 20%;
-
 }
 
-.header__topFive{
+.landing__topFive{
+    padding-top: 20px;
     display:flex;
     flex-direction: column;
     align-items: center;
     flex:1;
+    background-color: white;
+    height: 200px;
 }
 
-.header__rightSpacer{
+.landing__rightSpacer{
     display:flex;
     flex-direction: column;
     align-items: center;
