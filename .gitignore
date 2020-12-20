@@ -25,3 +25,7 @@ yarn-error.log*
 # firebase
 firebaseConfig.js
 */firebaseConfig.js
+
+# mockups
+Mockups/*
+Mockups
