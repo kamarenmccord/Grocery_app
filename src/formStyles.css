@@ -30,6 +30,7 @@ input:focus{
 }
 
 .landing__formButton{
+    cursor:pointer;
     margin-top: 20px;
     background-color: #fff;
     border: 1px solid white;

@@ -18,6 +18,7 @@ const Landing = () => {
                     <div className='landing__quote'>{randoQuote? randoQuote : 'Welcome!'}</div>
                 </div>
                 <div className='landing__accountSecion'>
+
                     Create an Account:
                     <form>
                         <div className='landing__formSubsection'>
@@ -35,11 +36,11 @@ const Landing = () => {
                             <input className='verifyPassword' placeholder="Verify password" type="password" />
                         </div>
 
-                        <div className='landing__formSubsection checkbox'>
+                        {/* <div className='landing__formSubsection checkbox'>
                             <input type="checkbox" /><p>Subscribe to newsletter</p>
-                        </div>
+                        </div> */}
 
-                        <button className="landing__formButton">Submit</button>
+                        <button className="landing__formButton">Sign Up</button>
                         <Link to='/Main' className="landing__continueButton">Continue as Guest</Link>
                     </form>
                 </div>

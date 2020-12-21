@@ -2,10 +2,12 @@ import React from 'react';
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Basket from './Basket';
+import Create from './Create';
 import Header from "./Header";
 import Landing from './Landing';
 import Login from './Login';
 import Main from './Main';
+import View from './View';
 
 function App() {
   return (
@@ -15,12 +17,12 @@ function App() {
 
           <Route path='/Create'>
             <Header />
-
+            <Create />
           </Route>
 
           <Route path='/View'>
             <Header />
-            
+            <View />
           </Route>
 
           <Route path='/Main'>
