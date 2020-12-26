@@ -68,6 +68,32 @@ input:focus{
     color:white;
 }
 
+.landing__loggedInButton{
+    color: black;
+    display:flex;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 18px;
+    height: 100px;
+    padding: 0 10px;
+    width: 250px;
+    background-color: white;
+    border-radius: 8px;
+    transition: 0.2s all ease;
+}
+
+.landing__loggedInButton:hover{
+    border: 1px solid black;
+    background-color: black;
+    color:white;
+}
+
+.landing__accountSecion > h3{
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
 
 /* login forms */
 

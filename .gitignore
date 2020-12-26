@@ -29,3 +29,6 @@ firebaseConfig.js
 # mockups
 Mockups/*
 Mockups
+
+# firebase
+src/firebase.js

@@ -1,9 +1,10 @@
 import React from 'react';
+import { useStateValue } from './stateProvider';
 import "./Basket.css";
 
 const Basket = () => {
 
-    const user = null;
+    const [{user}, ] = useStateValue();
 
     return (
         <div className='basket'>

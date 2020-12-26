@@ -1,24 +1,53 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { auth } from './firebase';
 import './Login.css'
 import './formStyles.css';
 
 const Login = () => {
+
+    const history = useHistory();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const signIn = e =>{
+        e.preventDefault();
+        auth
+            .signInWithEmailAndPassword(email, password)
+            .then((auth)=>{
+                if(auth){
+                    history.push('/view')
+                }
+            }).catch(e=>alert(e.message))
+    }
+
     return (
         <div className='login'>
             <div className="login__wrapper">
-                <h1>Log-in</h1>
+                <h1>Sign in</h1>
                 <form>
                     <div className='login__div'>
                         <p>Email:</p>
-                        <input className='login__email' type="Email" placeholder="Email" />
+                        <input 
+                            className='login__email' 
+                            type="Email" 
+                            placeholder="Email" 
+                            value={email}
+                            onChange={e=>setEmail(e.target.value)}
+                        />
                     </div>
                     <div className='login__div'>
                         <p>Password:</p>
-                        <input className='login__password' type="password" placeholder="Password" />
+                        <input 
+                            className='login__password' 
+                            type="password" 
+                            placeholder="Password" 
+                            value={password}
+                            onChange={e=>setPassword(e.target.value)}
+                        />
                     </div>
 
-                    <button className='login__button submitButton'>Login</button>
+                    <button className='login__button submitButton' onClick={signIn}>Sign In</button>
                 </form>
             </div>
         </div>

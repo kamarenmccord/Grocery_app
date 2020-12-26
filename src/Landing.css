@@ -97,7 +97,7 @@
     align-items: center;
     flex:1;
     background-color: white;
-    height: 200px;
+    padding-bottom: 40px;
 }
 
 .landing__rightSpacer{

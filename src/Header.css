@@ -12,6 +12,22 @@
     top:0;
 }
 
+.header__logout{
+    cursor:pointer;
+    border-radius: 12px;
+    background-color: white;
+    padding: 5px 7px;
+    font-weight:bold;
+    margin-right: 20px;
+    transition: 0.4s all ease;
+}
+
+.header__logout:hover{
+    background-color:black;
+    color:white;
+
+}
+
 .header a{
     color:black;
     text-decoration: none;
