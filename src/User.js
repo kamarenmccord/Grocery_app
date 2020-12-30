@@ -12,51 +12,55 @@ const User = () => {
     const [userPosts, setUserPosts] = useState('');
 
     useEffect(() => {
-        fetch(API_URL+'/userView/'+`${user.displayName}`, {
-            method:'GET',
-        }).then((response)=>{
-            return response.json()
-        }).then((data)=>{
-            setUserPosts(data);
-        })
-    }, [])
+        if (user){
+            fetch(API_URL+'/userView/'+`${user.displayName}`, {
+                method:'GET',
+            }).then((response)=>{
+                return response.json()
+            }).then((data)=>{
+                setUserPosts(data);
+            })
+        } // end if
+    }, [user])
 
     return (
         <div className='user'>
             {user? 
             (
-                <div className='user__wrapper'>
-                    <div className='user__upperContent'>
-                        <img
-                            className='user__image'
-                            src=''
-                            alt=''
-                        />
-                        <div className='user__titleContent'>
-                            <span>{user.email.split('@')[0]}</span>
-                            <span>{user.email}</span>
-                            <span>Date joined</span>
-                            <span>Posts: count</span>
+                <div className='conditional_wrapper'>
+                    <div className='user__wrapper'>
+                        <div className='user__upperContent'>
+                            <img
+                                className='user__image'
+                                src=''
+                                alt=''
+                            />
+                            <div className='user__titleContent'>
+                                <span>{user.email.split('@')[0]}</span>
+                                <span>{user.email}</span>
+                                <span>Date joined</span>
+                                <span>Posts: count</span>
+                            </div>
                         </div>
                     </div>
                     <div className='user__lowerContent'>
                         <h3>Your Posts</h3>
+                        <h4>Kept Private</h4>
                         <div className='user__postsPrivate'>
-                        <h4>Private</h4>
                             {userPosts? userPosts.map((post, index)=>{
-                                if (post.privacy === false){
-                                    <SmallPost data={post} />
+                                if (!post.privacy){
+                                    return <SmallPost data={post} />
                                 }
-                            }): 'No Private Posts Found'}
+                            }): <h5>No Private Posts Found</h5>}
                         </div>
 
+                        <h4>Publicly Shared</h4>
                         <div className='user__postsPublic'>
-                        <h4>Public</h4>
                         {userPosts? userPosts.map((post, index)=>{
-                            if (post.privacy === true){
-                                return <SmallPost data={post} />
+                            if (post.privacy){
+                                 return <SmallPost data={post} />
                             }
-                        }): 'No Public Posts Found'}
+                            }): <h5>No Public Posts Found</h5>}
                         </div>
                     </div>
                 </div>

@@ -17,9 +17,6 @@ export const defaultSlice = createSlice({
     }
 })
 
-
 export const { login, logout } = defaultSlice.actions;
-
 export const selectDefault = state => state.user.user;
-
-export default defaultSlice.reducer;
+export default defaultSlice.reducer

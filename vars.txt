@@ -1,0 +1,17 @@
+
+meals: 
+    title
+    author
+    published_date
+    ingrediants
+    privacy
+    instructions
+    image
+    
+    toBeAdded
+    picked?
+    viewed?
+    rating?
+
+user:
+    email / password / joined_on / profile_image / fullName / displayName 

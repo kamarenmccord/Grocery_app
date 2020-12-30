@@ -32,3 +32,6 @@ Mockups
 
 # firebase
 src/firebase.js
+
+# dev notes
+./vars.txt
