@@ -1,5 +1,6 @@
 import React from 'react';
-import {useStateValue} from './stateProvider';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout, selectDefault } from './features/reactSlice';
 import { auth } from './firebase';
 import { Link, useHistory } from 'react-router-dom';
 import './Header.css';
@@ -8,11 +9,15 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const Header = () => {
 
-    const [{user},] = useStateValue();
+    const user = useSelector(selectDefault);
+    console.log(user);
+    const dispatch = useDispatch();
     const history = useHistory();
 
-    const signOutUser = () =>{
+    const signOutUser = (e) =>{
+        e.preventDefault();
         if (user){
+            dispatch(logout());
             auth.signOut();
             history.push('/');
         }

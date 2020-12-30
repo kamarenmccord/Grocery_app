@@ -6,12 +6,16 @@ import './formStyles.css';
 import { facts } from './randoFacts';
 import TopFive from './TopFive';
 import { auth } from './firebase';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, selectDefault } from './features/reactSlice';
 const API_URL = "http://localhost:9000";
 
 const Landing = () => {
 
+    const user = useSelector(selectDefault);
+    const dispatch = useDispatch();
     const history = useHistory();
-    const [{user}, ] = useStateValue();
+
     const randoIndex = Math.floor((Math.random()* facts.length) +1);
     const randoQuote = facts[randoIndex];
     const [topFive, setTopFive] = useState('');
@@ -31,6 +35,11 @@ const Landing = () => {
             auth.createUserWithEmailAndPassword(email, password)
                 .then((auth)=>{
                     if(auth){
+                        dispatch(login({
+                            email: auth.email,
+                            uid: auth.uid,
+                            displayName: auth.email.split('@')[0],
+                        }))
                         history.push('/view');
                     }
                 }).catch(e=>alert(e.message));

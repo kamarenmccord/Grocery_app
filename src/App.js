@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import {BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom';
-import { useStateValue } from './stateProvider';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, logout, selectDefault} from './features/reactSlice';
 import './App.css';
 import Basket from './Basket';
 import Create from './Create';
@@ -14,23 +15,24 @@ import User from './User';
 
 function App() {
 
-  const [,dispatch] = useStateValue();
+  const user = useSelector(selectDefault);
+  const dispatch = useDispatch();
   const history = useHistory();
 
   useEffect(()=>{
     //log in user if authstate changes
     auth.onAuthStateChanged(authUser=>{
       if(authUser){
-        dispatch({
-          type:'SET_USER',
-          user:authUser,
-        })
+        dispatch(login({
+          email: authUser.email,
+          uid: authUser.uid,
+          displayName: authUser.email.split('@')[0],
+        }))
+        console.log('dispatched');
         history.push('/view')
       } else {
-        dispatch({
-          type:'SET_USER',
-          user:authUser,
-        })
+        dispatch(logout())
+        console.log('logged out');
       }
     })
   }, [])

@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "./View.css";
 import AddIcon from '@material-ui/icons/Add';
-import { useStateValue } from './stateProvider';
+import { useSelector } from 'react-redux';
+import { selectDefault } from './features/reactSlice';
 
 const API_URL = "http://localhost:9000";
 
 const View = () => {
 
-    const [{user}, ] = useStateValue();
+    const user = useSelector(selectDefault);
     const [posts, setPosts] = useState('');
     const [forceOnDelete, setForceOnDelete] = useState(0);
 

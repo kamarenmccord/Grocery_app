@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { selectDefault } from './features/reactSlice';
 import SmallPost from './SmallPost';
-import { useStateValue } from './stateProvider';
 import './User.css';
 
 const User = () => {
 
     const API_URL = 'Http://localhost:9000';
-    const [{user}, ] = useStateValue();
+    const user = useSelector(selectDefault);
     const [userPosts, setUserPosts] = useState('');
 
     useEffect(() => {
-        fetch(API_URL+'/userView/'+`${user.email.split('@')[0]}`, {
+        fetch(API_URL+'/userView/'+`${user.displayName}`, {
             method:'GET',
         }).then((response)=>{
             return response.json()
