@@ -4,12 +4,16 @@ import './Create.css';
 import Ingrediant from './Ingrediant';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
+import { useStateValue } from './stateProvider';
 
 const API_URL = "http://localhost:9000";
 
 const Create = () => {
 
     const history = useHistory();
+    const [{user}, ] = useStateValue();
+    // where true is privacy for public
+    const [privacySetting, setPrivacySetting] = useState(true);
 
     const submitNewMeal = () =>{
 
@@ -60,15 +64,15 @@ const Create = () => {
                     "title": mealTitle,
                     "ingrediants": ingrediants,
                     "instructions" : directions,
-                    "author": "Anonymous",
-                    "privacy": true,
+                    "privacy": privacySetting,
                     "image" : '',
                 }
-                // sendData.append("title", mealTitle);
-                // sendData.append("ingrediants", ingrediants);
-                // sendData.append("author", "Anonymous");
+                if (user){
+                    sendData["author"] = user.email.split('@')[0];
+                } else {
+                    sendData['author'] = "Anonymous";
+                }
                 // sendData.append("privacy", true);
-                console.log(sendData)
 
                     // send to server
                     fetch(API_URL+'/create', {
@@ -142,11 +146,22 @@ const Create = () => {
 
                     <div className='create__controls'>
                         <span>
-                            <input name='privacy' type='radio' id='public' checked />
+                            <input 
+                            name='privacy' 
+                            type='radio' 
+                            id='public'
+                            onClick={()=>setPrivacySetting(true)}
+                            checked />
                             <label for='public'>Public</label>
                         </span>
                         <span>
-                            <input className='checkbox' name='privacy' type='radio' id='private' />
+                            <input 
+                            className='checkbox' 
+                            name='privacy' 
+                            type='radio' 
+                            onClick={()=>setPrivacySetting(false)} 
+                            id='private' 
+                            />
                             <label className='checkbox' for='private'>Private</label>
                         </span>
                         <button 

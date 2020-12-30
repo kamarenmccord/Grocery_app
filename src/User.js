@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import SmallPost from './SmallPost';
 import { useStateValue } from './stateProvider';
 import './User.css';
 
@@ -10,10 +11,11 @@ const User = () => {
     const [userPosts, setUserPosts] = useState('');
 
     useEffect(() => {
-        fetch(API_URL+'/userView', {
+        fetch(API_URL+'/userView/'+`${user.email.split('@')[0]}`, {
             method:'GET',
+        }).then((response)=>{
+            return response.json()
         }).then((data)=>{
-            console.log(data);
             setUserPosts(data);
         })
     }, [])
@@ -30,14 +32,31 @@ const User = () => {
                             alt=''
                         />
                         <div className='user__titleContent'>
-                            <span>name</span>
+                            <span>{user.email.split('@')[0]}</span>
                             <span>{user.email}</span>
                             <span>Date joined</span>
                             <span>Posts: count</span>
                         </div>
                     </div>
                     <div className='user__lowerContent'>
-                        recent posts by user
+                        <h3>Your Posts</h3>
+                        <div className='user__postsPrivate'>
+                        <h4>Private</h4>
+                            {userPosts? userPosts.map((post, index)=>{
+                                if (post.privacy === false){
+                                    <SmallPost data={post} />
+                                }
+                            }): 'No Private Posts Found'}
+                        </div>
+
+                        <div className='user__postsPublic'>
+                        <h4>Public</h4>
+                        {userPosts? userPosts.map((post, index)=>{
+                            if (post.privacy === true){
+                                return <SmallPost data={post} />
+                            }
+                        }): 'No Public Posts Found'}
+                        </div>
                     </div>
                 </div>
             ):(

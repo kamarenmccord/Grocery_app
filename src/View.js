@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "./View.css";
 import AddIcon from '@material-ui/icons/Add';
+import { useStateValue } from './stateProvider';
 
 const API_URL = "http://localhost:9000";
 
 const View = () => {
 
-    const user = "Anonymous";
+    const [{user}, ] = useStateValue();
     const [posts, setPosts] = useState('');
     const [forceOnDelete, setForceOnDelete] = useState(0);
 
@@ -35,9 +36,10 @@ const View = () => {
             {user && <div className='view__user'>user section</div>}
             <div className='view__wrapper'>
                 <h2>View Recent Publishes</h2>
-                {posts? posts.map((obj, index)=>(
-                    <div className='view__container'>
-                        {user===obj.author && 
+                {posts? posts.map((obj, index)=>{
+                    if (obj.privacy === true){
+                    return (<div className='view__container'>
+                        {user.email.split('@')[0]===obj.author && 
                             <div 
                                 className='view__delete'
                                 onClick={()=> deletePost(obj._id)}
@@ -60,8 +62,10 @@ const View = () => {
                             <span>{obj.instructions? obj.instructions : ''}</span>
                         </div>
                     </div>
-                    </div>
-                )) : (
+                    </div>)
+                } else {
+                    return ('')
+                }}) : (
                 <div className='view__container'>
                     <img className='view__image' 
                         src='https://images.unsplash.com/photo-1608501857571-31a43311e342?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'
