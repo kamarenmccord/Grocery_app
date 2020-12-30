@@ -4,14 +4,15 @@ import './Create.css';
 import Ingrediant from './Ingrediant';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
-import { useStateValue } from './stateProvider';
+import { useSelector } from 'react-redux';
+import { selectDefault } from './features/reactSlice';
 
 const API_URL = "http://localhost:9000";
 
 const Create = () => {
 
     const history = useHistory();
-    const [{user}, ] = useStateValue();
+    const user = useSelector(selectDefault);
     // where true is privacy for public
     const [privacySetting, setPrivacySetting] = useState(true);
 
@@ -68,7 +69,7 @@ const Create = () => {
                     "image" : '',
                 }
                 if (user){
-                    sendData["author"] = user.email.split('@')[0];
+                    sendData["author"] = user.displayName;
                 } else {
                     sendData['author'] = "Anonymous";
                 }
