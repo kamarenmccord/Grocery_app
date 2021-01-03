@@ -1,10 +1,11 @@
 import React from 'react';
-import { useStateValue } from './stateProvider';
 import "./Basket.css";
+import { useSelector } from 'react-redux';
+import { selectDefault } from './features/reactSlice';
 
 const Basket = () => {
 
-    const [{user}, ] = useStateValue();
+    const user = useSelector(selectDefault)
 
     return (
         <div className='basket'>

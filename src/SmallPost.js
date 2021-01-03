@@ -1,9 +1,25 @@
 import React from 'react'
 import "./SmallPosts.css";
+import "./HiddenMenu.css";
+import MenuIcon from '@material-ui/icons/Menu';
+import ShareIcon from '@material-ui/icons/Share';
 
-const SmallPost = ({data}) => {
+const SmallPost = ({data, reversed, userControl}) => {
     return (
-        <div className='smallpost'>
+        <div className={!reversed? 'smallpost standard' : 'smallpost reversed'}>
+            {reversed && <p className='privateLogo'>p</p> }
+            { userControl && 
+                <div className='userControls'>
+                    <MenuIcon />
+                    <div className='hidden_menu'>
+                        <h4>Controls</h4> 
+                        <div className='controls_wrapper'>
+                            <span>Make {reversed? "Public" : "Private"} <button type='button'>Change</button></span>
+                            <span>Edit item <button type='button'>Edit</button></span>
+                            <span>Share with friends <ShareIcon /></span>
+                        </div>
+                    </div>
+                </div>}
             <div className='smallpost__wrapper'>
                 <img
                     className='smallpost__image'

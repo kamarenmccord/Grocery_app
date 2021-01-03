@@ -1,0 +1,157 @@
+
+.meal{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+.meal__return{
+    border: 1px solid black;
+    background-color:white;
+    margin: 10px;
+    padding: 5px 7px;
+    transition: 0.3s all ease;
+}
+
+.meal__return:hover{
+    background-color:black;
+    color:white;
+}
+
+.meal__wrapper{
+    width: 90%;
+    min-height: 700px;
+    background-color:white;
+}
+
+.meal_image{
+    height: 400px;
+    width: 100%;
+    z-index: 1;
+    position:relative;
+    background-size: cover;
+}
+
+.hidden__wrapper{
+    cursor:context-menu;
+    position:absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    top: 5px;
+    left: 5px;
+    padding: 1px 7px;
+    border-radius: 50%;
+    background-color:purple;
+    border: 1px solid white;
+    color:white;
+}
+
+.hidden_div{
+    display:none;
+    background-color:purple;
+    border: 1px solid black;
+    color:white;
+    position:absolute;
+    left: 30px;
+    padding: 2px 5px;
+    border-radius: 8px;
+}
+
+.meal__privacy{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden__wrapper:hover .hidden_div{
+    display:flex;
+}
+
+.meal_imageShadow{
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0, 0.4);
+
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+}
+
+.meal__title{
+    font-size: 42px;
+    color:white;
+    font-weight:bold;
+}
+
+.meal__addToBasketButton{
+    cursor: pointer;
+    position:absolute;
+    bottom: 0px;
+    right: 20px;
+    color: black;
+    background-color:#eef0ff;
+    border: 1px solid black;
+    border-bottom: none;
+    padding: 3px 7px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    transition: 0.3s all ease;
+}
+
+.meal__addToBasketButton:hover{
+    background-color:white;
+    padding-bottom: 17px;
+    border-bottom: 2px dashed black;
+}
+
+.meal__information{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 20px;
+    width:100%;
+}
+
+.meal__author{
+    font-size: 24px;
+    margin-top: 5px;
+}
+
+.meal__date{
+    width: 400px;
+    color: #333;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #333;
+}
+
+.meal__ingrediants{
+    display:flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid black;
+    width: 90%;
+    padding-bottom: 20px;
+}
+
+.meal__ingrediant{
+    padding: 5px 7px;
+    border: 1px solid black;
+    border-radius: 12px;
+    margin-left: 20px;
+    background-color: #eef0ff;
+}
+
+.meal__ingrediant:hover{
+    border: 1px solid blue;
+}
+
+.meal__instructions{
+    margin-top: 30px;
+    line-height: 1.4;
+    max-width: 90%;
+    padding-bottom: 20px;
+}

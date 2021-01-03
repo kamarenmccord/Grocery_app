@@ -6,9 +6,9 @@ import { Link, useHistory } from 'react-router-dom';
 import './Header.css';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { Avatar } from '@material-ui/core';
 
 const Header = () => {
-
     const user = useSelector(selectDefault);
     console.log(user);
     const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const Header = () => {
                 {user? <div onClick={signOutUser} className='header__logout'>Logout</div> : ''}
 
                 <div className='header__basket'><Link to='/Basket'><ShoppingBasketIcon /></Link></div>
-                <div className='header__login'><Link to={!user? '/login' : '/user'}><AccountCircleIcon />{!user? 'Log-in' : ''}</Link></div>
+                <div className='header__login'><Link to={user? '/user' : '/login'}><Avatar src={user? user.imageURL : ''}>{user? user.displayName[0] : ''}</Avatar>{!user? 'Log in' : user.displayName}</Link></div>
             </div>
         </div>
     )

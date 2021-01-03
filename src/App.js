@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, logout, selectDefault} from './features/reactSlice';
 import './App.css';
@@ -10,6 +10,7 @@ import Landing from './Landing';
 import Login from './Login';
 import Main from './Main';
 import View from './View';
+import Meal from './Meal';
 import { auth } from './firebase';
 import User from './User';
 
@@ -41,6 +42,11 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
+
+          <Route path='/Post/:postId'>
+            <Header />
+            <Meal />
+          </Route>
 
           <Route path='/Create'>
             <Header />

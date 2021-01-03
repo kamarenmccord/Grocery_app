@@ -20,6 +20,8 @@
     font-weight:bold;
     margin-right: 20px;
     transition: 0.4s all ease;
+    display:flex;
+    align-items: center;
 }
 
 .header__logout:hover{
@@ -35,8 +37,9 @@
 
 .header__nav{
     display:flex;
-    width: 200px;
+    align-items:center;
     justify-content: space-evenly;
+    width: 200px;
 }
 
 .header__logo{

@@ -49,8 +49,8 @@ const Register = () => {
     }
 
     return (
-        <div className='register'>
-            <div className='landing__accountSecion'>
+        <div className='register' >
+            <div className='landing__accountSecion' style={{minHeight: 500}}>
                 {!user? (
                 <form>
                     <h3>Create an Account:</h3>
@@ -101,6 +101,7 @@ const Register = () => {
         </form>
         ):(
             <Link to='/view'>
+                <h2 className='landing__continueHeader'>Already signed in?</h2>
                 <button
                     className='landing__loggedInButton'
                     type='button'

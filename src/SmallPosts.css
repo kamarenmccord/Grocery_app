@@ -1,15 +1,51 @@
 
 .smallpost{
+    position: relative;
     display:flex;
     width: 300px;
     height: 450px;
     border: 1px solid orange;
     background-color: white;
-    margin: 5px;
+    margin: 20px 15px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transition: 0.3s all ease;
 }
 
-.smallpost:hover{
+.privateLogo{
+    border-radius: 50%;
+    z-index: 500;
+    background-color: purple;
+    width: 20px;
+    height: 20px;
+    display:flex;
+    justify-content: center;
+    align-items: top;
+    font-weight:bold;
+    color:white;
+    position:absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.reversed{
+    border-radius: 0;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-color: purple;
+    transition: 0.3s all ease;
+}
+
+.reversed:hover{
+    border-color:red !important;
+    box-shadow: 0px 0px 3px 3px purple;
+    transform: translate(-7px, -5px);
+}
+
+.standard:hover{
     border: 1px solid blue;
+    box-shadow: 0px 0px 3px 3px orange;
+    transform: translate(-7px, -5px);
 }
 
 .smallpost__wrapper{
@@ -21,6 +57,8 @@
 }
 
 .smallpost__image{
+    border-top-left-radius: 20px;
+    overflow:hidden;
     width: 100%;
     height: 150px;
     object-fit: cover;
@@ -57,6 +95,11 @@
     border-radius: 12px;
     margin: 4px;
     border: 1px solid white;
+}
+
+.smallpost__content li:hover{
+    border:1px solid blue;
+    cursor: pointer;
 }
 
 .smallpost__instructions{

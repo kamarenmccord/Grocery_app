@@ -39,7 +39,7 @@ const View = () => {
                 <h2>View Recent Publishes</h2>
                 {posts? posts.map((obj, index)=>{
                     if (obj.privacy === true){
-                    return (<div className='view__container'>
+                    return (<Link to={`/post/${obj._id}`}><div className='view__container'>
                         {user.email.split('@')[0]===obj.author && 
                             <div 
                                 className='view__delete'
@@ -63,7 +63,7 @@ const View = () => {
                             <span>{obj.instructions? obj.instructions : ''}</span>
                         </div>
                     </div>
-                    </div>)
+                    </div></Link>)
                 } else {
                     return ('')
                 }}) : (
