@@ -149,9 +149,101 @@
     border: 1px solid blue;
 }
 
+.meal__ingrediantUpdate{
+    margin: 10px 20px;
+}
+
+.privateLogo{
+    border-radius: 50%;
+    z-index: 500;
+    background-color: purple;
+    width: 20px;
+    height: 20px;
+    display:flex;
+    justify-content: center;
+    align-items: top;
+    font-weight:bold;
+    color:white;
+    position:absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.meal__updateIngrediantName{
+    margin-bottom: 20px;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
+.meal__updateIngrediantAmount{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
 .meal__instructions{
     margin-top: 30px;
     line-height: 1.4;
     max-width: 90%;
     padding-bottom: 20px;
+}
+
+.meal{
+    position: relative;
+}
+
+.userBox{
+    display:flex;
+    align-items: center;
+    flex-direction:column;
+    z-index: 800;
+    position:absolute;
+    bottom: 20px;
+    right:20px;
+    width: 400px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color:white;
+    padding: 20px;
+}
+
+.userBox h4{
+    margin-bottom: 40px;
+    font-size: 24px;
+}
+
+.userBox form{
+    display:flex;
+    flex-direction: column;
+}
+
+.meal__newIngrediantWrapper{
+    margin: 30px 0;
+}
+
+.userBox button{
+    margin-top: 20px;
+    background-color:lightblue;
+    padding: 5px;
+    border:1px solid white;
+    border-radius: 8px;
+    cursor:pointer;
+}
+
+.meal__descriptionWrapper{
+    margin-top:20px;
+}
+
+.meal__privacy{
+    display:flex;
+    flex-direction:column;
+    margin-top: 20px;
+}
+
+.meal__privacy span{
+    width: 100px;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
 }

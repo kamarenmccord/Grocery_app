@@ -10,11 +10,6 @@
     text-decoration: none;
 }
 
-.view__wrapper a{
-    min-width: 800px;
-    max-width: 1100px;
-}
-
 .view__create{
     position: fixed;
     width: 50px;
@@ -40,9 +35,9 @@
     background-color:white;
     border-right: 1px solid black;
     border-radius: 12px;
-    position: absolute;
+    position: fixed;
     left: 0px;
-    top: 30px;
+    top: 80px;
     width: 200px;
     min-height: 400px;
     margin-top: 20px;
@@ -71,38 +66,46 @@
     border: 1px solid black;
     border-radius: 12px;
     height: 260px;
-    width: 70%;
+    width: 800px;
     display:flex;
     overflow:hidden;
     transition: 0.3s all ease;
     position: relative;
 }
 
-.view__container:hover .view__delete{
-    display:flex;
+.view__container:hover{
+    transform: translate(-5px, -5px);
+    box-shadow: 3px 3px 5px 6px #ccc;
 }
 
-.view__delete{
+.userControls{
     position:absolute;
-    display:none;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    font-weight:bold;
     bottom: 20px;
     right:20px;
-    width: 100px;
+    display:flex;
+    justify-content: space-evenly;
+    align-items:center;
+    font-size: 18px;
+    font-weight:bold;
+    width: 200px;
     height: 50px;
-    border-radius: 20px;
-    border: 1px solid black;
+    border: 1px solid purple;
+    transition: 0.2s all ease;
 }
 
-.view__delete:hover{
-    border-color:red;
-}
-
-.view__container:hover{
+.userControls:hover{
     transform: translate(-5px, -10px);
+}
+
+.view__control{
+    z-index: 100;
+    border: 1px solid blue;
+    padding: 5px;
+    border-radius: 12px;
+}
+
+.view__control:hover{
+    border-color:red;
 }
 
 .view__image{

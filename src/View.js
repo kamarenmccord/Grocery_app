@@ -34,17 +34,26 @@ const View = () => {
     return (
         <div className='view'>
             <Link className='view__create' to='/create'><AddIcon /></Link>
-            {user && <div className='view__user'>user section</div>}
+            {user && 
+            <div className='view__user'>
+                <div className='view__userWrapper'>
+                    <img src={user.imageURL} alt='' />
+                    <h4>Welcome back, {user.displayName}</h4>
+                </div>
+            </div>}
             <div className='view__wrapper'>
                 <h2>View Recent Publishes</h2>
                 {posts? posts.map((obj, index)=>{
                     if (obj.privacy === true){
                     return (<Link to={`/post/${obj._id}`}><div className='view__container'>
-                        {user.email.split('@')[0]===obj.author && 
-                            <div 
-                                className='view__delete'
-                                onClick={()=> deletePost(obj._id)}
-                            >Delete</div>}
+                        {user && user.email.split('@')[0]===obj.author &&
+                            <div className='userControls'>
+                                <div 
+                                    className='view__delete view__control'
+                                    onClick={()=> deletePost(obj._id)}
+                                >Delete</div>
+                                <Link to={`/update/${obj._id}`}><div className='view__update view__control'>Update</div></Link>
+                            </div>}
                         <img 
                             className='view__image'
                             src={obj.image? obj.image : 'https://images.unsplash.com/photo-1608501857571-31a43311e342?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'}

@@ -48,6 +48,11 @@ function App() {
             <Meal />
           </Route>
 
+          <Route path='/update/:postId'>
+            <Header />
+            <Meal update={true}/>
+          </Route>
+
           <Route path='/Create'>
             <Header />
             <Create />

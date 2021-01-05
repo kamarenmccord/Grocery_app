@@ -39,7 +39,6 @@
     display:flex;
     align-items:center;
     justify-content: space-evenly;
-    width: 200px;
 }
 
 .header__logo{
@@ -59,4 +58,8 @@
     font-size: 24px;
     font-weight: bolder;
     color: #222;
+}
+
+.header__avatar{
+    margin-right: 20px;
 }

@@ -3,6 +3,7 @@ import "./SmallPosts.css";
 import "./HiddenMenu.css";
 import MenuIcon from '@material-ui/icons/Menu';
 import ShareIcon from '@material-ui/icons/Share';
+import { Link } from 'react-router-dom';
 
 const SmallPost = ({data, reversed, userControl}) => {
     return (
@@ -15,7 +16,7 @@ const SmallPost = ({data, reversed, userControl}) => {
                         <h4>Controls</h4> 
                         <div className='controls_wrapper'>
                             <span>Make {reversed? "Public" : "Private"} <button type='button'>Change</button></span>
-                            <span>Edit item <button type='button'>Edit</button></span>
+                            <Link to={`/update/${data._id}`}><span>Edit item <button type='button'>Edit</button></span></Link>
                             <span>Share with friends <ShareIcon /></span>
                         </div>
                     </div>

@@ -31,7 +31,7 @@ const Header = () => {
                 {user? <div onClick={signOutUser} className='header__logout'>Logout</div> : ''}
 
                 <div className='header__basket'><Link to='/Basket'><ShoppingBasketIcon /></Link></div>
-                <div className='header__login'><Link to={user? '/user' : '/login'}><Avatar src={user? user.imageURL : ''}>{user? user.displayName[0] : ''}</Avatar>{!user? 'Log in' : user.displayName}</Link></div>
+                <div className='header__login'><Link className='header__avatar' to={user? '/user' : '/login'}><Avatar src={user? user.imageURL : ''}>{user? user.displayName[0] : ''}</Avatar>{!user? 'Log in' : user.displayName}</Link></div>
             </div>
         </div>
     )
