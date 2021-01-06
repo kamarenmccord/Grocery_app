@@ -123,6 +123,24 @@
     justify-content: center;
 }
 
+.create__imageWrapper{
+    background-color:#7e8b9e;
+    color:white;
+    padding: 40px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+}
+
+.create__imageWrapper p{
+    font-weight:bold;
+}
+
+.create__imageWrapper input{
+    margin-top: 10px;
+    border-radius: 12px;
+    padding: 0 10px;
+}
+
 .create__ingrediants{
     background-color: #eef0ff;
     border: 1px solid black;

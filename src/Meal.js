@@ -15,6 +15,7 @@ const Meal = ({update}) => {
     //for updates
     const [newTitle, setNewTitle] = useState('')
     const [newDescription, setNewDescription] = useState('');
+    const [newImageUrl, setNewImageUrl] = useState('');
     const [privacySetting, setPrivacySetting] = useState(true);
     const [forceRefresh, setForceRefresh] = useState(false);
 
@@ -31,12 +32,16 @@ const Meal = ({update}) => {
             let amount= element.children[1].children[1].value;
             if (!amount){amount=''}
             if (name){
-                data.ingrediants.push({"name":name, "amount": amount})
+                ingrediants.push({"name":name, "amount": amount})
             }
         }
 
         if (ingrediants && ingrediants.length>0){
             data.ingrediants = ingrediants;
+        }
+
+        if (newImageUrl){
+            data.image = newImageUrl
         }
 
         return data;
@@ -77,7 +82,6 @@ const Meal = ({update}) => {
         }).then((response)=>(
             response.json()
         )).then(data=>{
-            console.log(data)
             updateVars(data);
         })
     }, [])
@@ -139,6 +143,15 @@ const Meal = ({update}) => {
             }
                 <div className='meal__addToBasketButton'>Add to shop list</div>
                 <div className='meal_imageShadow'>
+                    {update && 
+                    <div className='meal__imageEditWrapper'>
+                        <p>New Image URL: </p>
+                        <input placeholder='image url'
+                            value={newImageUrl}
+                            onChange={e=>setNewImageUrl(e.target.value)}
+                        />
+                    </div>
+                    }
                     <div className='meal__title'>
                         {postData.title}
                     </div>

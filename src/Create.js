@@ -15,6 +15,7 @@ const Create = () => {
     const user = useSelector(selectDefault);
     // where true is privacy for public
     const [privacySetting, setPrivacySetting] = useState(true);
+    const [imageUrl, setImageUrl] = useState('');
 
     const submitNewMeal = () =>{
 
@@ -23,6 +24,7 @@ const Create = () => {
 
         //mealTitle is already set
         const ingrediants = [];
+        const sendData = [];
         // const sendData = new FormData();
         const ingrediantArray = document.getElementsByClassName('ingrediant__new')
         for (let elem of ingrediantArray){
@@ -30,11 +32,10 @@ const Create = () => {
             if (!amountInput){
                 amountInput = 0;
             }
-
-            const sendData = {};
-            sendData["name"] = elem.value;
-            sendData["amount"] = amountInput;
-            ingrediants.push(sendData);
+            let ingrediantPair = {}
+            ingrediantPair["name"] = elem.value;
+            ingrediantPair["amount"] = amountInput;
+            ingrediants.push(ingrediantPair);
         }
 
         // verify fields
@@ -66,15 +67,20 @@ const Create = () => {
                     "ingrediants": ingrediants,
                     "instructions" : directions,
                     "privacy": privacySetting,
-                    "image" : '',
                 }
+
+                if (imageUrl){
+                    sendData.image = imageUrl;
+                } else {
+                    sendData.image = '';
+                }
+
                 if (user){
                     sendData["author"] = user.displayName;
                 } else {
                     sendData['author'] = "Anonymous";
                 }
                 // sendData.append("privacy", true);
-
                     // send to server
                     fetch(API_URL+'/create', {
                         method:'POST',
@@ -120,6 +126,13 @@ const Create = () => {
                         </div>
 
                         <div className='create__ingrediants'>
+                            <div className='create__imageWrapper'>
+                                <p>Image Url:</p>
+                                <input className='create__image'
+                                    value={imageUrl}
+                                    onChange={e=>setImageUrl(e.target.value)}
+                                />
+                            </div>
                             { Array(count).fill().map((num, index)=>(
                                 <Ingrediant ingrediantNumber={index} />
                                 ))

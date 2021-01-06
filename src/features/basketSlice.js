@@ -7,10 +7,22 @@ export const basketSlice = createSlice({
     },
     reducers:{
         ADD_TO_BASKET: (state, action)=>{
-            console.log('adding item')
+            state.basket = [...state.basket, action.payload]
+            console.log(state.basket);
         },
         REMOVE_FROM_BASKET: (state, action)=>{
-            console.log('removing item')
+            let newBasket = [...state.basket];
+            const index = state.basket.findIndex((basketItem)=> basketItem.id === action.id);
+
+            if (index >= 0){
+                newBasket.splice(index, 1);
+            } else {
+                console.warn(
+                    `cannot remove product with id ${action.id}`
+                )
+            }
+
+            state.basket = newBasket
         },
         EMPTY_BASKET: (state, action)=>{
             state.basket = []

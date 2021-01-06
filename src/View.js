@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "./View.css";
 import AddIcon from '@material-ui/icons/Add';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectDefault } from './features/reactSlice';
+import { ADD_TO_BASKET, selectBasket } from './features/basketSlice';
 
 const API_URL = "http://localhost:9000";
 
 const View = () => {
 
     const user = useSelector(selectDefault);
+    const basket = useSelector(selectBasket);
+    const dispatch = useDispatch();
     const [posts, setPosts] = useState('');
     const [forceOnDelete, setForceOnDelete] = useState(0);
 
@@ -19,6 +22,11 @@ const View = () => {
         }).then(()=>{
             setForceOnDelete(forceOnDelete+1);
         })
+    }
+
+    const addMealToBasket = (singleMealData) =>{
+        // dispatch data to basket
+        dispatch(ADD_TO_BASKET(singleMealData));
     }
 
     useEffect(() => {
@@ -46,6 +54,11 @@ const View = () => {
                 {posts? posts.map((obj, index)=>{
                     if (obj.privacy === true){
                     return (<Link to={`/post/${obj._id}`}><div className='view__container'>
+                        <div className='view__add' 
+                            onClick={()=>addMealToBasket(obj)}
+                        >
+                            +
+                        </div>
                         {user && user.email.split('@')[0]===obj.author &&
                             <div className='userControls'>
                                 <div 

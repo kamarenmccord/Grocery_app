@@ -24,7 +24,7 @@ const SmallPost = ({data, reversed, userControl}) => {
             <div className='smallpost__wrapper'>
                 <img
                     className='smallpost__image'
-                    src=''
+                    src={data.image? data.image : ''}
                     alt=''
                 />
                 <div className='smallpost__content'>
