@@ -7,6 +7,8 @@ import './Header.css';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { Avatar } from '@material-ui/core';
+import logo from './static/images/logo_black_white.png';
+
 
 const Header = () => {
     const user = useSelector(selectDefault);
@@ -25,7 +27,12 @@ const Header = () => {
 
     return (
         <div className="header">
-            <Link to='/'><div className='header__logo'>L</div></Link>
+            {/* <Link to='/'><div className='header__logo'>L</div></Link> */}
+            <Link to='/'>
+                <img className='header__imageLogo'
+                    src={logo}
+                    alt=''
+                ></img></Link>
             <div className='header__title'>Groceries List Maker</div>
             <div className='header__nav'>
                 {user? <div onClick={signOutUser} className='header__logout'>Logout</div> : ''}

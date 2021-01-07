@@ -12,6 +12,36 @@
     top:0;
 }
 
+.header__imageLogo{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-left: 20px;
+    transform: rotate(-23deg);
+    border: 1px solid red;
+    object-fit:contain;
+    transition: 0.5s all ease;
+}
+
+.header__imageLogo:hover{
+    margin-top: 40px;
+    box-shadow: 0px 5px 10px 0px #333;
+    height: 100px;
+    width: 100px;
+    transform: rotate(0deg);
+}
+
+/* background-color:red;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    color:white;
+    font-weight:bold; */
+
 .header__logout{
     cursor:pointer;
     border-radius: 12px;
