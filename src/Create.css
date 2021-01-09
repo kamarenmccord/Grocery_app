@@ -164,6 +164,13 @@
     align-items: center;
 }
 
+.create textarea{
+    margin-top: 20px;
+    width: 400px;
+    height: 200px;
+    font-size: 18px;
+}
+
 .create__new span{
     display:flex;
     justify-content: space-between;

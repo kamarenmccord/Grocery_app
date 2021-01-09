@@ -102,7 +102,7 @@ const Meal = ({update}) => {
                     </div>
                     <div className='meal__descriptionWrapper'>
                         <p>Description:</p>
-                        <input
+                        <textarea
                             className='meal__newDescription'
                             value={newDescription}
                             onChange={e=>setNewDescription(e.target.value)}

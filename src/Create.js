@@ -147,7 +147,7 @@ const Create = () => {
                             
                             <div className='create__instructions'>
                                 <p>How to prepare (this should be a different element)</p>
-                                <input 
+                                <textarea 
                                     placeholder='instructions'
                                     value={directions}
                                     onChange={event=>setDirections(event.target.value)}    
