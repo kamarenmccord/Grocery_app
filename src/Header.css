@@ -13,6 +13,18 @@
     position:relative;
 }
 
+.header__basket{
+    position:relative;
+}
+
+
+.header__basketCount{
+    position:absolute;
+    color:#333;
+    top: 10px;
+    right:-10px;
+}
+
 .header__imageLogo{
     height: 50px;
     width: 50px;

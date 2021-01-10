@@ -1,14 +1,18 @@
+import { FlashOnTwoTone } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react'
 import {Link, useHistory, useParams} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { ADD_TO_BASKET, selectBasket } from './features/basketSlice';
 import "./Meal.css";
 
 const API_URL = 'http://localhost:9000';
 
 const Meal = ({update}) => {
-    const history = useHistory();
     const defaultImage = 'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80';
     const { postId } = useParams();
-    // const user = useSelector(defaultSlice);
+    const basket = useSelector(selectBasket);
+    const dispatch = useDispatch();
+
     const [postData, setPostData ] = useState();
     const [background, setBackground ] = useState(defaultImage);
 
@@ -17,21 +21,29 @@ const Meal = ({update}) => {
     const [newDescription, setNewDescription] = useState('');
     const [newImageUrl, setNewImageUrl] = useState('');
     const [privacySetting, setPrivacySetting] = useState(true);
-    const [forceRefresh, setForceRefresh] = useState(false);
+    const [newIngrediants, setNewIngrediants] = useState([]);
+
+    const addMealToBasket = (singleMealData) =>{
+        dispatch(ADD_TO_BASKET(singleMealData));
+        let button = document.getElementsByClassName('meal__addToBasketButton')[0]
+        button.style.backgroundColor = 'green';
+        button.style.color = 'white';
+
+    }
 
     const getForms = ()=>{
         // gets form data on page then returns
-        const ingrediantElements = document.getElementsByClassName('meal__ingrediantUpdate');
         const data =    {title: newTitle,
                         instructions: newDescription,
                         privacy: privacySetting}
 
         let ingrediants = [];
-        for (let element of ingrediantElements){
-            let name= element.children[0].children[1].value;
-            let amount= element.children[1].children[1].value;
-            if (!amount){amount=''}
-            if (name){
+        for (let ingrediant of newIngrediants){
+            let name= ingrediant.name;
+            let amount= ingrediant.amount;
+            if (amount === 0){amount=''}
+            if (name.length>0){
+                // to avoid blank strings
                 ingrediants.push({"name":name, "amount": amount})
             }
         }
@@ -47,6 +59,18 @@ const Meal = ({update}) => {
         return data;
     }
 
+    const addNewIngrediant = ()=>{
+        let clonedData = newIngrediants.slice();
+        clonedData.push({'name':'', 'amount': ''});
+        setNewIngrediants(clonedData)
+    }
+
+    const removeNewIngrediant = ()=>{
+        let clonedData = newIngrediants.slice();
+        clonedData.pop()
+        setNewIngrediants(clonedData);
+    }
+
     const sendUpdate = (e)=>{
         e.preventDefault();
         // get data from forms then send to api / refresh
@@ -59,21 +83,24 @@ const Meal = ({update}) => {
                     "Content-type": "application/json; charset=UTF-8"
                  },
             }).then((res)=>{
-                console.log("dataUpdated!")
-                updateVars(res, true);
+                return res
+            }).then(()=>{
+                document.getElementsByClassName('submit__button')[0].style.backgroundColor = 'green';
+            }).catch(e=>{
+                document.getElementsByClassName('submit__button')[0].style.backgroundColor = 'red';
+                console.log(e);
             })
         }
     }
 
-    const updateVars = (mealJson, skipMain)=>{
-        if (!skipMain){
+    const updateVars = (mealJson)=>{
         setPostData(mealJson);
-        }
         if (mealJson.image){
             setBackground(mealJson.image);
         }
         setNewTitle(mealJson.title);
         setNewDescription(mealJson.instructions);
+        setNewIngrediants(mealJson.ingrediants);
     }
 
     useEffect(()=>{
@@ -86,8 +113,21 @@ const Meal = ({update}) => {
         })
     }, [])
 
+    const consoleLogData = () =>{
+        console.log('debug button located in meal js del before production')
+        console.log(newIngrediants);
+    }
+
+    const changeIndex = (value, index, type) =>{
+        let clonedArray = newIngrediants.slice();
+        clonedArray[index][type] = value;
+        setNewIngrediants(clonedArray);
+    }
+
     return (
         <div className='meal'>
+            <div className='dummy_button' onClick={consoleLogData}>GET DATA</div>
+
             {update &&
             <div className='userBox'>
              <h4>Update</h4>
@@ -130,7 +170,7 @@ const Meal = ({update}) => {
                             {postData && !postData.privacy && <p className='privateLogo'>P</p> }
                         </span>
                     </div>
-                    <button type='button' onClick={sendUpdate}>Update</button>
+                    <button className='submit__button' type='button' onClick={sendUpdate}>Update</button>
                 </form>
             </div>
             }
@@ -141,7 +181,7 @@ const Meal = ({update}) => {
                 >{!postData.privacy && <div className='hidden__wrapper'>
                 <div className='meal__privacy'>p</div><div className='hidden_div'>Private</div></div>
             }
-                <div className='meal__addToBasketButton'>Add to shop list</div>
+                <button className='meal__addToBasketButton' onClick={()=>addMealToBasket(postData)}>Add to shop list</button>
                 <div className='meal_imageShadow'>
                     {update && 
                     <div className='meal__imageEditWrapper'>
@@ -155,23 +195,29 @@ const Meal = ({update}) => {
                     <div className='meal__title'>
                         {postData.title}
                     </div>
-                </div></div> {/*ends background and shadow*/}
+                </div></div> {/*ends background and shadow layers dont seperate*/}
                 <div className='meal__information'>
                     <span className='meal__author'>Posted By: {postData.author}</span>
                     <span className='meal__date'>Posted Date: {Date(postData.published_date).split(' ').splice(0, 4).join(' ')}</span>
                     <div className='meal__ingrediants'>
                         {!update && postData.ingrediants? postData.ingrediants.map(ingrediant=>(
                         <div className='meal__ingrediant'>{ingrediant.name} {ingrediant.amount>0 && ":"+ingrediant.amount}</div>
-                        )): ( postData.ingrediants.map(ingrediant=>(
+                        )): (
+                            newIngrediants && newIngrediants.map((ingrediant, index)=>(
                             <div className='meal__ingrediantUpdate'>
                                 <div className='meal__updateIngrediantName'>
-                                    <p>Ingrediant: </p><input placeholder={ingrediant.name} />
+                                    <p>Ingrediant: </p><input value={ingrediant.name} onChange={(e)=>changeIndex(e.target.value, index, "name")}/>
                                 </div>
                                 <div className='meal__updateIngrediantAmount'>
-                                    <p>Amount: </p><input placeholder={ingrediant.amount || 0} />
+                                    <p>Amount: </p><input value={ingrediant.amount || 0} onChange={(e)=>changeIndex(e.target.value, index, "amount")} />
                                 </div>
                             </div>))
                         )}
+                        {update &&<div className="meal__userControls">
+                        <div className='addIngrediant' onClick={()=>addNewIngrediant()}>+</div>
+                        <div className='addIngrediant' onClick={()=>removeNewIngrediant()}>-</div>
+                        </div>
+                        }
                     </div>
                     <div className='meal__instructions'>{postData.instructions}</div>
                 </div>

@@ -113,3 +113,26 @@
     font-size: 12px;
     color: #777;
 }
+
+.basket__mealTitleWrapper{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+.basket__mealTitleWrapper button{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid black;
+    font-weight:bold;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.basket__mealTitleWrapper h2{
+    font-size: 20px;
+}

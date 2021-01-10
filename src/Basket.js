@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./Basket.css";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectDefault } from './features/reactSlice';
-import { selectBasket } from './features/basketSlice';
-import SmallPost from './SmallPost';
+import { REMOVE_FROM_BASKET, selectBasket } from './features/basketSlice';
 
 const Basket = () => {
 
     const user = useSelector(selectDefault);
     const basket = useSelector(selectBasket);
-    const reformatedBasket = [];
+    const dispatch = useDispatch();
+    let reformatedBasket = [];
 
-    if (basket){
+    const formatBasket = (basket)=>{
+        reformatedBasket = []
         basket.map(item=>{
             console.log('item', item);
             for (let ingrediant of item.ingrediants){
@@ -19,8 +20,16 @@ const Basket = () => {
             }
         })
     }
+    formatBasket(basket)
 
-    console.log(reformatedBasket);
+    useEffect(()=>{
+        formatBasket(basket)
+        console.log('useEffect');
+    }, [])
+
+    const removeItem = (id) =>{
+        dispatch(REMOVE_FROM_BASKET(id));
+    }
 
     return (
         <div className='basket'>
@@ -32,10 +41,11 @@ const Basket = () => {
 
             <div className='basket__content'>
 
+                {reformatedBasket &&
                 <div className='basket__list'>
                     <h2>List</h2>
 
-                    {reformatedBasket && reformatedBasket.map(meal=>(
+                    {reformatedBasket.map(meal=>(
                     <div className='basket__mealWrapper'>
                         <div className='basket__remove'>
                             <input type='checkbox' />
@@ -43,34 +53,24 @@ const Basket = () => {
                         </div>
                         <div className='basket__meal'>
                             <div className='basket__ingrediant'>{meal[1].name}</div>
-                            <div className='basket__amount'>{meal[1].amount && meal[1].amount}</div>
+                            <div className='basket__amount'>{meal[1].amount>0 && meal[1].amount}</div>
                         </div>
                         <div className='basket__mealTitle--sm'>{meal[0]}</div>
                     </div>
                     ))}
 
-                    {/* {basket && basket.map(mealData=>(
-                        <div className='basket__mealWrapper'>
-                            <div className='basket__remove'>
-                                <input type='checkbox' />
-                                <label>Remove</label>
-                            </div>
-                            {mealData.ingrediants.map(ingrediant=>(
-                                <div className='basket__meal'>
-                                    <div className='basket__ingrediant'>{ingrediant.name}</div>
-                                    <div className='basket__amount'>{ingrediant.amount && ingrediant.amount}</div>
-                                </div>
-                            ))}
-                            <div className='basket__mealTitle--sm'>{mealData.title}</div>
-                        </div>
-                    ))} */}
-
                 </div>
+                }
 
                 <div className='basket__meals'>
                     <h2>Meals Selected</h2>
                     {basket && basket.map(mealData=>(
-                        <div className='basket__mealTitle'>{mealData.title}</div>
+                        <div className='basket__mealTitleWrapper'>
+                            <div className='basket__mealTitle'>
+                                {mealData.title} 
+                            </div>
+                            <button className='basket__remove' onClick={()=>removeItem(mealData._id)}>X</button>
+                        </div>
                     ))}
                 </div>
             </div>
