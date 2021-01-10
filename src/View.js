@@ -79,7 +79,7 @@ const View = () => {
                         <div className='view__directions' >
                             <ul>
                                 {obj.ingrediants? obj.ingrediants.map((data)=>(
-                                    <li>{data.name}{data.amount? ": "+data.amount:''}</li>
+                                    <li>{data.name}{data.amount && data.amount>0? ": "+data.amount:''}</li>
                                 )) : ''}
                             </ul>
                             <span>{obj.instructions? obj.instructions : ''}</span>

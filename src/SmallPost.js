@@ -32,7 +32,7 @@ const SmallPost = ({data, reversed, userControl}) => {
                     <span>Published on: {new Date(parseInt(data.published_date)).toDateString()}</span>
                     <ul>
                         {data.ingrediants.map((item)=>{
-                            return <li>{item.name}{item.amount? ": "+item.amount:''}</li>
+                            return <li>{item.name}{item.amount && item.amount>0? ": "+item.amount:''}</li>
                         })}
                     </ul>
                     <div className='smallpost__instructions'>
