@@ -116,12 +116,24 @@
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     transition: 0.3s all ease;
+    font-size: 18px;
+    width: 200px;
+    height: 30px;
 }
 
 .meal__addToBasketButton:hover{
     background-color:white;
     padding-bottom: 17px;
     border-bottom: 2px dashed black;
+    height: 70px;
+    width: 250px;
+}
+.meal__addToBasketButton:focus{
+    background-color:white;
+    padding-bottom: 17px;
+    border-bottom: 2px dashed black;
+    height:70px;
+    width: 250px;
 }
 
 .meal__information{
@@ -152,6 +164,7 @@
     border-bottom: 1px solid black;
     width: 90%;
     padding-bottom: 20px;
+    max-width: 1200px;
 }
 
 .meal__ingrediant{
@@ -162,12 +175,34 @@
     background-color: #eef0ff;
 }
 
-.meal__ingrediant:hover{
-    border: 1px solid blue;
+.meal__ingrediantUpdate{
+    margin: 20px 20px;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
 }
 
-.meal__ingrediantUpdate{
-    margin: 10px 20px;
+.meal .addIngrediant{
+    border: 1px solid black;
+    background-color: #eef0ff;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    cursor:pointer;
+    margin-bottom: 10px;
+}
+
+.meal__userControls{
+    padding: 0 5px;
+    display:flex;
+    flex-direction:column;
+}
+
+.meal .addIngrediant:hover{
+    color:white;
 }
 
 .privateLogo{

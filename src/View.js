@@ -53,7 +53,7 @@ const View = () => {
                 <h2>View Recent Publishes</h2>
                 {posts? posts.map((obj, index)=>{
                     if (obj.privacy === true){
-                    return (<Link to={`/post/${obj._id}`}><div className='view__container'>
+                    return (<div className='view__container'>
                         <div className='view__add' 
                             onClick={()=>addMealToBasket(obj)}
                         >
@@ -73,7 +73,7 @@ const View = () => {
                             alt=''
                         />
                         <div className='view__content'>
-                        <div className='view__title' >{obj.title}</div>
+                        <div className='view__title' ><Link to={`/post/${obj._id}`}>{obj.title}</Link></div>
                         <div className='view__author' >Published By: {obj.author}</div>
                         <div className='view__date' >{new Date(parseInt(obj.published_date)).toDateString()}</div>
                         <div className='view__directions' >
@@ -85,7 +85,7 @@ const View = () => {
                             <span>{obj.instructions? obj.instructions : ''}</span>
                         </div>
                     </div>
-                    </div></Link>)
+                    </div>)
                 } else {
                     return ('')
                 }}) : (
